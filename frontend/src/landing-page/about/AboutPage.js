@@ -1,9 +1,12 @@
 import React from "react";
+import Hero from "./Hero";
+import Team from "./Team";
 
 function PricingPage(){
     return(
         <div>
-            <h1>Pricing Page</h1>
+            <Hero/>
+            <Team/>
         </div>
     )
 }
