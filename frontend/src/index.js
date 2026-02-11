@@ -11,6 +11,7 @@ import SupportPage from './landing-page/support/SupportPage';
 import Footer from './landing-page/Footer';
 import Navbar from './landing-page/Navbar';
 import NotFound from './landing-page/NotFound';
+import Login from './landing-page/login/Login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +19,7 @@ root.render(
   <Navbar/>
     <Routes>
       <Route path='/' element={<HomePage/>}/>
+      <Route path="/login" element={<Login />} />
       <Route path='/signup' element={<Signup/>}/>
       <Route path='/about' element={<AboutPage/>}/>
       <Route path='/product' element={<ProductPage/>}/>

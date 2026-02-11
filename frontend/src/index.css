@@ -38,3 +38,79 @@ code {
   border-radius: 10px;
   border: none;
 }
+.signup-wrapper {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9fafb;
+}
+
+.signup-card {
+  background: #ffffff;
+  padding: 40px;
+  width: 360px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.brand {
+  color: #387ed1;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.title {
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #387ed1;
+}
+
+.signup-btn {
+  background: #387ed1;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.signup-btn:hover {
+  background: #2f6bbf;
+}
+
+.footer-text {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.link {
+  color: #387ed1;
+  text-decoration: none;
+  font-weight: 500;
+}
