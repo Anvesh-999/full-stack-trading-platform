@@ -5,13 +5,17 @@ import TopBar from "./TopBar";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     const verifyUser = async () => {
       try {
         const { data } = await authAxios.get("/verify");
-        if (!data.status) {
-          window.location.replace("http://localhost:3000/login"); // frontend login
+
+        if (data.status) {
+          setUsername(data.user); 
+        } else {
+          window.location.replace("http://localhost:3000/login");
         }
       } catch {
         window.location.replace("http://localhost:3000/login");
@@ -27,8 +31,8 @@ const Home = () => {
 
   return (
     <>
-      <TopBar />
-      <Dashboard />
+      <TopBar  />
+      <Dashboard  username={username}/>
     </>
   );
 };
