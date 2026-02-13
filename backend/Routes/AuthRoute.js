@@ -5,8 +5,12 @@ const { userVerification } = require("../Middlewares/AuthMiddleware");
 router.post("/signup", Signup);
 router.post("/login", Login);
 router.get("/verify", userVerification, (req, res) => {
-  res.json({ status: true, user: req.user.username });
+  res.json({
+    status: true,
+    user: req.user,
+  });
 });
+
 
 
 module.exports = router;

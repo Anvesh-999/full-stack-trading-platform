@@ -1,6 +1,7 @@
 const User = require("../model/UserModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.TOKEN_KEY, { expiresIn: "3d" });
@@ -85,13 +86,19 @@ module.exports.Login = async (req, res) => {
       });
     }
 
-    const token = createToken(user._id);
+    const token = jwt.sign(
+  { id: user._id },
+  process.env.TOKEN_KEY,
+  { expiresIn: "3d" }
+);
+
 
     res.cookie("token", token, {
   httpOnly: true,
   sameSite: "none", // allow cross-site cookie
   secure: false,    // true if using https
   maxAge: 24 * 60 * 60 * 1000, // 1 day
+  path: "/",  // ensure cookie is sent to all routes
 });
 
 

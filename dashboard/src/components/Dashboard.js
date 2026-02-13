@@ -1,6 +1,5 @@
   import React from "react";
   import { Route, Routes } from "react-router-dom";
-  // import { GeneralContextProvider } from "./GeneralContext";
   import Apps from "./Apps";
   import Funds from "./Funds";
   import Holdings from "./Holdings";

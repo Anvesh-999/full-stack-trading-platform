@@ -1,32 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import authApi from "../api/authAxios";
-import tradeApi from "../api/tradeAxios";
+import tradeAxios from "../api/tradeAxios";
 
 const Positions = () => {
-  const navigate = useNavigate();
   const [allPositions, setAllPositions] = useState([]);
 
   useEffect(() => {
-    const loadData = async () => {
+    const fetchPositions = async () => {
       try {
-        // 🔐 Step 1: Verify user
-        const auth = await authApi.post("/");
-        if (!auth.data.status) {
-          navigate("/login");
-          return;
-        }
-
-        // 📊 Step 2: Fetch positions
-        const res = await tradeApi.get("/allPositions");
+        const res = await tradeAxios.get("/allPositions");
         setAllPositions(res.data);
-      } catch (err) {
-        navigate("/login");
+      } catch (error) {
+        console.error("Failed to fetch positions", error);
       }
     };
 
-    loadData();
-  }, [navigate]);
+    fetchPositions();
+  }, []);
 
   return (
     <>
@@ -41,7 +30,7 @@ const Positions = () => {
               <th>Qty.</th>
               <th>Avg.</th>
               <th>LTP</th>
-              <th>P&L</th>
+              <th>P&amp;L</th>
               <th>Chg.</th>
             </tr>
           </thead>

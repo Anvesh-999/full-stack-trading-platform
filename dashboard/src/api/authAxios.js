@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const authApi = axios.create({
+const authAxios = axios.create({
   baseURL: "http://localhost:3002",
-  withCredentials: true,
+  withCredentials: true, 
 });
 
-export default authApi;
+export default authAxios;
