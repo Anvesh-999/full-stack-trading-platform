@@ -1,33 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import authApi from "../api/authAxios";
 import tradeApi from "../api/tradeAxios";
 
 const Holdings = () => {
-  const navigate = useNavigate();
   const [allHoldings, setAllHoldings] = useState([]);
 
   useEffect(() => {
-    const loadData = async () => {
+    const fetchHoldings = async () => {
       try {
-        // 1️⃣ Verify JWT
-        const auth = await authApi.post("/");
-        if (!auth.data.status) {
-          navigate("/login");
-          return;
-        }
-
-        // 2️⃣ Fetch Holdings
         const res = await tradeApi.get("/allHoldings");
         setAllHoldings(res.data);
-
-      } catch (err) {
-        navigate("/login");
+      } catch (error) {
+        console.error("Failed to fetch holdings", error);
       }
     };
 
-    loadData();
-  }, [navigate]);
+    fetchHoldings();
+  }, []);
 
   return (
     <>
@@ -70,6 +58,27 @@ const Holdings = () => {
             })}
           </tbody>
         </table>
+      </div>
+
+      <div className="row">
+        <div className="col">
+          <h5>
+            29,875.<span>55</span>
+          </h5>
+          <p>Total investment</p>
+        </div>
+
+        <div className="col">
+          <h5>
+            31,428.<span>95</span>
+          </h5>
+          <p>Current value</p>
+        </div>
+
+        <div className="col">
+          <h5>1,553.40 (+5.20%)</h5>
+          <p>P&amp;L</p>
+        </div>
       </div>
     </>
   );

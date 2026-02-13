@@ -31,8 +31,10 @@ app.use(bodyParser.json());
 
 
 app.use("/", authRoute);
-
-
+// app.use((req, res, next) => {
+//   console.log("Incoming cookies:", req.cookies);
+//   next();
+// });
 
 
 app.get('/allHoldings',userVerification, async (req, res) => {

@@ -1,32 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import authApi from "../api/authAxios";
 import tradeApi from "../api/tradeAxios";
 
 const Orders = () => {
-  const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const loadOrders = async () => {
+    const fetchOrders = async () => {
       try {
-        // 🔐 Verify user
-        const auth = await authApi.post("/");
-        if (!auth.data.status) {
-          navigate("/login");
-          return;
-        }
-
-        // 📦 Fetch orders
         const res = await tradeApi.get("/allOrders");
         setOrders(res.data);
-      } catch (err) {
-        navigate("/login");
+      } catch (error) {
+        console.error("Failed to fetch orders", error);
       }
     };
 
-    loadOrders();
-  }, [navigate]);
+    fetchOrders();
+  }, []);
 
   if (orders.length === 0) {
     return (

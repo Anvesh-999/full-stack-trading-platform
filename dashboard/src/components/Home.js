@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard";
 import TopBar from "./TopBar";
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
+  const [ready, setReady] = useState(false);
   const [username, setUsername] = useState("");
 
   useEffect(() => {
@@ -12,27 +12,23 @@ const Home = () => {
       try {
         const { data } = await authAxios.get("/verify");
 
-        if (data.status) {
-          setUsername(data.user); 
-        } else {
-          window.location.replace("http://localhost:3000/login");
-        }
-      } catch {
+        setUsername(data.user.username);
+
+        setReady(true);
+      } catch (err) {
         window.location.replace("http://localhost:3000/login");
-      } finally {
-        setLoading(false);
       }
     };
 
     verifyUser();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (!ready) return null;
 
   return (
     <>
-      <TopBar  />
-      <Dashboard  username={username}/>
+      <TopBar />
+      <Dashboard username={username} />
     </>
   );
 };
