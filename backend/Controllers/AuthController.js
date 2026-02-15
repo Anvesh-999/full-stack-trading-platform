@@ -39,10 +39,12 @@ module.exports.Signup = async (req, res) => {
 
     res.cookie("token", token, {
   httpOnly: true,
-  sameSite: "none", // allow cross-site cookie
-  secure: false,    // true if using https
-  maxAge: 24 * 60 * 60 * 1000, // 1 day
+  sameSite: "lax",   // ✅ IMPORTANT FIX
+  secure: false,     // localhost = false
+  path: "/",
+  maxAge: 3 * 24 * 60 * 60 * 1000,
 });
+
 
 
     res.status(201).json({
@@ -95,11 +97,12 @@ module.exports.Login = async (req, res) => {
 
     res.cookie("token", token, {
   httpOnly: true,
-  sameSite: "none", // allow cross-site cookie
-  secure: false,    // true if using https
-  maxAge: 24 * 60 * 60 * 1000, // 1 day
-  path: "/",  // ensure cookie is sent to all routes
+  sameSite: "lax",   // ✅ IMPORTANT FIX
+  secure: false,     // localhost = false
+  path: "/",
+  maxAge: 3 * 24 * 60 * 60 * 1000,
 });
+
 
 
     res.status(200).json({

@@ -8,7 +8,7 @@ module.exports.userVerification = async (req, res, next) => {
 
     const token = req.cookies.token;
     if (!token) {
-      console.log("❌ No token");
+      // console.log("❌ No token");
       return res.status(401).json({ status: false });
     }
 
