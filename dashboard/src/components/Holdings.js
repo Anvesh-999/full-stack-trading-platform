@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import tradeApi from "../api/tradeAxios";
+import {VerticalGraph} from "./VerticalGraph";
 
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
@@ -16,6 +17,19 @@ const Holdings = () => {
 
     fetchHoldings();
   }, []);
+
+  let labels=allHoldings.map((stock) => stock["name"]);
+
+  const data={
+    labels,
+    datasets:[
+      {
+        label:'Stock Price',
+        data:allHoldings.map(stock => stock.price),
+        backgroundColor:'rgba(255, 99, 132, 0.5)',
+      }, 
+    ]
+  }
 
   return (
     <>
@@ -80,6 +94,7 @@ const Holdings = () => {
           <p>P&amp;L</p>
         </div>
       </div>
+      <VerticalGraph  data={data}/>
     </>
   );
 };

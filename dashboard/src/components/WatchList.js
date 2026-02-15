@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 
 import GeneralContext from "./GeneralContext";
-
 import { Tooltip, Grow } from "@mui/material";
 
 import {
@@ -32,6 +31,7 @@ const WatchList = () => {
           return <WatchListItem stock={stock} key={index} />;
         })}
       </ul>
+      
     </div>
   );
 };
