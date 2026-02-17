@@ -8,8 +8,6 @@
 # testing
 /coverage
 
-git rm -r --cached frontend/public/fontawesome/
-
 # production
 /build
 
